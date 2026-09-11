@@ -1,0 +1,19 @@
+{
+    "original_shape": [
+        425,
+        640
+    ],
+    "target_shape": [
+        640,
+        640
+    ],
+    "resized_shape": [
+        425,
+        640
+    ],
+    "scale": 1.0,
+    "pad_left": 0,
+    "pad_right": 0,
+    "pad_top": 107,
+    "pad_bottom": 108
+}
