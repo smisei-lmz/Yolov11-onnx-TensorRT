@@ -19,7 +19,7 @@ ITERATIONS = 300
 def main():
     ort.preload_dlls(directory="")
     option = ort.SessionOptions()
-    option.graph_optimization_level = (ort.GraphOptimizationLevel.ORT_DISABLE_ALL)
+    option.graph_optimization_level = (ort.GraphOptimizationLevel.ORT_ENABLE_ALL)
     session = ort.InferenceSession(
         ONNX_PATH,sess_options=option,providers=["CUDAExecutionProvider","CPUExecutionProvider"]
     )
