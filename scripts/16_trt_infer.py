@@ -1,106 +1,57 @@
 import numpy as np
+import torch
+import tensorrt as trt
 
-
-ORT_PATH = (
-    "results/ort_output_0.npy"
+INPUT_PATH = (
+    "data/preprocessed_image.npy"
 )
-
-TRT_PATH = (
-    "results/trt_output0.npy"
-)
-
+ENGINE_PATH = "models/yolo11s_static_Nodynamic_Nosimplify_Nonms_fp32.engine"
 
 def main():
+    logger = trt.Logger(trt.Logger.INFO)
+    with open(ENGINE_PATH,"rb") as f:
+        engine_data = f.read()
+    runtime = trt.Runtime(logger)
+    engine = runtime.deserialize_cuda_engine(engine_data)
+    context = engine.create_execution_context()
 
-    ort = np.load(
-        ORT_PATH
-    )
+    input_names = []
+    output_names = []
 
-    trt = np.load(
-        TRT_PATH
-    )
+    for i in range (engine.num_io_tensors):
+        name = (engine.get_tensor_name(i))
+        mode = (engine.get_tensor_mode(name))
+        if (mode==trt.TensorIOMode.INPUT):
+            input_names.append(name)
+        else:
+            output_names.append(name)
+    input_name = (input_names[0])      
+    x_np = np.load(INPUT_PATH).astype(np.float32)
 
-    print(
-        "ORT:",
-        ort.shape,
-        ort.dtype
-    )
+    x_gpu = torch.from_numpy(x_np).contiguous().cuda()
+    context.set_tensor_address(input_name,x_gpu.data_ptr()) #告诉context你要的数据在gpu的这块地址
 
-    print(
-        "TRT:",
-        trt.shape,
-        trt.dtype
-    )
+    outputs = {}
+    for output_name in output_names:
+        output_shape = tuple(context.get_tensor_shape(output_name))
+        output_dtype = (engine.get_tensor_dtype(output_name))
 
-    if ort.shape != trt.shape:
+        output_gpu = torch.empty( output_shape,dtype=torch.float32,device="cuda")
+        outputs[ output_name] = output_gpu
 
-        raise RuntimeError(
-            "ORT / TRT shape不同"
-        )
+        context.set_tensor_address(output_name,output_gpu.data_ptr())
 
-    diff = np.abs(
-        ort - trt
-    )
-
-    print(
-        "\n===== Comparison ====="
-    )
-
-    print(
-        "max abs error:",
-        diff.max()
-    )
-
-    print(
-        "mean abs error:",
-        diff.mean()
-    )
-
-    print(
-        "median abs error:",
-        np.median(diff)
-    )
-
-    a = (
-        ort
-        .astype(np.float64)
-        .reshape(-1)
-    )
-
-    b = (
-        trt
-        .astype(np.float64)
-        .reshape(-1)
-    )
-
-    cosine = (
-        np.dot(a, b)
-        /
-        (
-            np.linalg.norm(a)
-            *
-            np.linalg.norm(b)
-            +
-            1e-12
-        )
-    )
-
-    print(
-        "cosine similarity:",
-        cosine
-    )
-
-    print(
-        "allclose:",
-        np.allclose(
-            ort,
-            trt,
-            rtol=1e-4,
-            atol=1e-4
-        )
-    )
+    stream = torch.cuda.Stream()
+    with torch.cuda.stream(stream):
+        success = (context.execute_async_v3(stream_handle=stream.cuda_stream))
+    if not success:
+        raise RuntimeError("TensorRT inference failed")
+    stream.synchronize()
+    for name, tensor in outputs.items():
+        output_np = (tensor .cpu() .numpy())
+    np.save(f"results/"f"trt_{name}.npy",output_np)    
 
 
 if __name__ == "__main__":
-
     main()
+    
