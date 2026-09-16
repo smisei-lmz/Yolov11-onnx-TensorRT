@@ -177,6 +177,54 @@ src/BufferManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/BufferManager.cpp.s
 .PHONY : src/BufferManager.cpp.s
 
+src/Postprocess.o: src/Postprocess.cpp.o
+.PHONY : src/Postprocess.o
+
+# target to build an object file
+src/Postprocess.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/Postprocess.cpp.o
+.PHONY : src/Postprocess.cpp.o
+
+src/Postprocess.i: src/Postprocess.cpp.i
+.PHONY : src/Postprocess.i
+
+# target to preprocess a source file
+src/Postprocess.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/Postprocess.cpp.i
+.PHONY : src/Postprocess.cpp.i
+
+src/Postprocess.s: src/Postprocess.cpp.s
+.PHONY : src/Postprocess.s
+
+# target to generate assembly for a file
+src/Postprocess.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/Postprocess.cpp.s
+.PHONY : src/Postprocess.cpp.s
+
+src/Preprocess.o: src/Preprocess.cpp.o
+.PHONY : src/Preprocess.o
+
+# target to build an object file
+src/Preprocess.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/Preprocess.cpp.o
+.PHONY : src/Preprocess.cpp.o
+
+src/Preprocess.i: src/Preprocess.cpp.i
+.PHONY : src/Preprocess.i
+
+# target to preprocess a source file
+src/Preprocess.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/Preprocess.cpp.i
+.PHONY : src/Preprocess.cpp.i
+
+src/Preprocess.s: src/Preprocess.cpp.s
+.PHONY : src/Preprocess.s
+
+# target to generate assembly for a file
+src/Preprocess.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/Preprocess.cpp.s
+.PHONY : src/Preprocess.cpp.s
+
 src/TrtEngine.o: src/TrtEngine.cpp.o
 .PHONY : src/TrtEngine.o
 
@@ -216,6 +264,12 @@ help:
 	@echo "... src/BufferManager.o"
 	@echo "... src/BufferManager.i"
 	@echo "... src/BufferManager.s"
+	@echo "... src/Postprocess.o"
+	@echo "... src/Postprocess.i"
+	@echo "... src/Postprocess.s"
+	@echo "... src/Preprocess.o"
+	@echo "... src/Preprocess.i"
+	@echo "... src/Preprocess.s"
 	@echo "... src/TrtEngine.o"
 	@echo "... src/TrtEngine.i"
 	@echo "... src/TrtEngine.s"

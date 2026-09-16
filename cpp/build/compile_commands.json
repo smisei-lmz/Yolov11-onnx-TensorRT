@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/build",
+  "command": "/usr/bin/c++  -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda-13.4/include -std=gnu++17 -o CMakeFiles/trt_example.dir/main.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/main.cpp",
+  "file": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/main.cpp"
+},
+{
+  "directory": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/build",
+  "command": "/usr/bin/c++  -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda-13.4/include -std=gnu++17 -o CMakeFiles/trt_example.dir/src/BufferManager.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/BufferManager.cpp",
+  "file": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/src/BufferManager.cpp"
+},
+{
+  "directory": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/build",
+  "command": "/usr/bin/c++  -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda-13.4/include -std=gnu++17 -o CMakeFiles/trt_example.dir/src/Preprocess.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Preprocess.cpp",
+  "file": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Preprocess.cpp"
+},
+{
+  "directory": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/build",
+  "command": "/usr/bin/c++  -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda-13.4/include -std=gnu++17 -o CMakeFiles/trt_example.dir/src/Postprocess.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Postprocess.cpp",
+  "file": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Postprocess.cpp"
+},
+{
+  "directory": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/build",
+  "command": "/usr/bin/c++  -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda-13.4/include -std=gnu++17 -o CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/TrtEngine.cpp",
+  "file": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/src/TrtEngine.cpp"
+}
+]

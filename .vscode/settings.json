@@ -13,7 +13,8 @@
     "C_Cpp.default.includePath": [
         "${workspaceFolder}/cpp/include",
         "/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include",
-        "/usr/local/cuda-13.4/include"
+        "/usr/local/cuda-13.4/include",
+        "/usr/include/opencv4"
     ],
     "C_Cpp.default.compilerPath": "/usr/bin/g++",
     "C_Cpp.default.cppStandard": "c++17"

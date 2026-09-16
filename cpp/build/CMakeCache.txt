@@ -347,6 +347,9 @@ CUDA_nvml_LIBRARY:FILEPATH=/usr/local/cuda-13.4/lib64/stubs/libnvidia-ml.so
 //Path to a library.
 CUDA_nvrtc_LIBRARY:FILEPATH=/usr/local/cuda-13.4/lib64/libnvrtc.so
 
+//The directory containing a CMake configuration file for OpenCV.
+OpenCV_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/opencv4
+
 //Path to a file.
 TENSORRT_INCLUDE_DIR:PATH=/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include
 
@@ -608,6 +611,8 @@ CUDA_nvml_LIBRARY-ADVANCED:INTERNAL=1
 CUDA_nvrtc_LIBRARY-ADVANCED:INTERNAL=1
 //Details about finding CUDAToolkit
 FIND_PACKAGE_MESSAGE_DETAILS_CUDAToolkit:INTERNAL=[/usr/local/cuda-13.4/include][/usr/local/cuda-13.4/lib64/libcudart.so][/usr/local/cuda-13.4/bin][v13.4.59(13.4)]
+//Details about finding OpenCV
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr][cfound components: core imgproc imgcodecs highgui dnn ][v4.5.4(4)]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 

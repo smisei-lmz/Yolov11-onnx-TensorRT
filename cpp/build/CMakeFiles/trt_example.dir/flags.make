@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/local/cuda-13.4/include
+CXX_INCLUDES = -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda-13.4/include
 
 CXX_FLAGS = -std=gnu++17
 

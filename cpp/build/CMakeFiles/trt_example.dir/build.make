@@ -97,10 +97,38 @@ CMakeFiles/trt_example.dir/src/BufferManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trt_example.dir/src/BufferManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/BufferManager.cpp -o CMakeFiles/trt_example.dir/src/BufferManager.cpp.s
 
+CMakeFiles/trt_example.dir/src/Preprocess.cpp.o: CMakeFiles/trt_example.dir/flags.make
+CMakeFiles/trt_example.dir/src/Preprocess.cpp.o: ../src/Preprocess.cpp
+CMakeFiles/trt_example.dir/src/Preprocess.cpp.o: CMakeFiles/trt_example.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/smisei/Yolov11-ONNX-TensorRT/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/trt_example.dir/src/Preprocess.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/trt_example.dir/src/Preprocess.cpp.o -MF CMakeFiles/trt_example.dir/src/Preprocess.cpp.o.d -o CMakeFiles/trt_example.dir/src/Preprocess.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Preprocess.cpp
+
+CMakeFiles/trt_example.dir/src/Preprocess.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/trt_example.dir/src/Preprocess.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Preprocess.cpp > CMakeFiles/trt_example.dir/src/Preprocess.cpp.i
+
+CMakeFiles/trt_example.dir/src/Preprocess.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trt_example.dir/src/Preprocess.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Preprocess.cpp -o CMakeFiles/trt_example.dir/src/Preprocess.cpp.s
+
+CMakeFiles/trt_example.dir/src/Postprocess.cpp.o: CMakeFiles/trt_example.dir/flags.make
+CMakeFiles/trt_example.dir/src/Postprocess.cpp.o: ../src/Postprocess.cpp
+CMakeFiles/trt_example.dir/src/Postprocess.cpp.o: CMakeFiles/trt_example.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/smisei/Yolov11-ONNX-TensorRT/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/trt_example.dir/src/Postprocess.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/trt_example.dir/src/Postprocess.cpp.o -MF CMakeFiles/trt_example.dir/src/Postprocess.cpp.o.d -o CMakeFiles/trt_example.dir/src/Postprocess.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Postprocess.cpp
+
+CMakeFiles/trt_example.dir/src/Postprocess.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/trt_example.dir/src/Postprocess.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Postprocess.cpp > CMakeFiles/trt_example.dir/src/Postprocess.cpp.i
+
+CMakeFiles/trt_example.dir/src/Postprocess.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trt_example.dir/src/Postprocess.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/Postprocess.cpp -o CMakeFiles/trt_example.dir/src/Postprocess.cpp.s
+
 CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o: CMakeFiles/trt_example.dir/flags.make
 CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o: ../src/TrtEngine.cpp
 CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o: CMakeFiles/trt_example.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/smisei/Yolov11-ONNX-TensorRT/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/smisei/Yolov11-ONNX-TensorRT/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o -MF CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o.d -o CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/TrtEngine.cpp
 
 CMakeFiles/trt_example.dir/src/TrtEngine.cpp.i: cmake_force
@@ -115,6 +143,8 @@ CMakeFiles/trt_example.dir/src/TrtEngine.cpp.s: cmake_force
 trt_example_OBJECTS = \
 "CMakeFiles/trt_example.dir/main.cpp.o" \
 "CMakeFiles/trt_example.dir/src/BufferManager.cpp.o" \
+"CMakeFiles/trt_example.dir/src/Preprocess.cpp.o" \
+"CMakeFiles/trt_example.dir/src/Postprocess.cpp.o" \
 "CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o"
 
 # External object files for target trt_example
@@ -122,12 +152,20 @@ trt_example_EXTERNAL_OBJECTS =
 
 trt_example: CMakeFiles/trt_example.dir/main.cpp.o
 trt_example: CMakeFiles/trt_example.dir/src/BufferManager.cpp.o
+trt_example: CMakeFiles/trt_example.dir/src/Preprocess.cpp.o
+trt_example: CMakeFiles/trt_example.dir/src/Postprocess.cpp.o
 trt_example: CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o
 trt_example: CMakeFiles/trt_example.dir/build.make
 trt_example: /home/smisei/opt/tensorrt/TensorRT-11.3.0.99/lib/libnvinfer.so
 trt_example: /usr/local/cuda-13.4/lib64/libcudart.so
+trt_example: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.5.4d
+trt_example: /usr/lib/x86_64-linux-gnu/libopencv_dnn.so.4.5.4d
+trt_example: /usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.5.4d
+trt_example: /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.4.5.4d
+trt_example: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.5.4d
+trt_example: /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5.4d
 trt_example: CMakeFiles/trt_example.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/smisei/Yolov11-ONNX-TensorRT/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable trt_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/smisei/Yolov11-ONNX-TensorRT/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable trt_example"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/trt_example.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
