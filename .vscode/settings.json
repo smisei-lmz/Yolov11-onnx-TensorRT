@@ -1,4 +1,20 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:conda",
-    "python-envs.defaultPackageManager": "ms-python.python:conda"
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "cmake.sourceDirectory": "${workspaceFolder}/cpp",
+    "cmake.buildDirectory": "${workspaceFolder}/cpp/build",
+    "cmake.configureSettings": {
+        "TENSORRT_ROOT": "/home/smisei/opt/tensorrt/TensorRT-11.3.0.99",
+        "CUDAToolkit_ROOT": "/usr/local/cuda-13.4",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/cpp/build/compile_commands.json",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/cpp/include",
+        "/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include",
+        "/usr/local/cuda-13.4/include"
+    ],
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.cppStandard": "c++17"
 }
