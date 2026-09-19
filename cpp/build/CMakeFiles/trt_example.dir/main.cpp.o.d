@@ -378,7 +378,8 @@ CMakeFiles/trt_example.dir/main.cpp.o: \
  /usr/local/cuda-13.4/include/vector_functions.hpp \
  /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/Logger.h \
  /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/BufferManager.h \
- /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/Preprocess.h \
- /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/Postprocess.h \
+ /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/CudaPreprocess.h \
  /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/Types.h \
+ /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/Postprocess.h \
+ /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/Preprocess.h \
  /home/smisei/Yolov11-ONNX-TensorRT/cpp/include/Labels.h

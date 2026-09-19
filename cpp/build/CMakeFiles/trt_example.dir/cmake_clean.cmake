@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/trt_example.dir/main.cpp.o.d"
   "CMakeFiles/trt_example.dir/src/BufferManager.cpp.o"
   "CMakeFiles/trt_example.dir/src/BufferManager.cpp.o.d"
+  "CMakeFiles/trt_example.dir/src/CudaPreprocess.cu.o"
+  "CMakeFiles/trt_example.dir/src/CudaPreprocess.cu.o.d"
   "CMakeFiles/trt_example.dir/src/Postprocess.cpp.o"
   "CMakeFiles/trt_example.dir/src/Postprocess.cpp.o.d"
   "CMakeFiles/trt_example.dir/src/Preprocess.cpp.o"
@@ -14,6 +16,6 @@ file(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang CXX)
+foreach(lang CUDA CXX)
   include(CMakeFiles/trt_example.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

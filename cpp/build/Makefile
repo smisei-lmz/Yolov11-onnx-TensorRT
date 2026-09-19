@@ -177,6 +177,30 @@ src/BufferManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/BufferManager.cpp.s
 .PHONY : src/BufferManager.cpp.s
 
+src/CudaPreprocess.o: src/CudaPreprocess.cu.o
+.PHONY : src/CudaPreprocess.o
+
+# target to build an object file
+src/CudaPreprocess.cu.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/CudaPreprocess.cu.o
+.PHONY : src/CudaPreprocess.cu.o
+
+src/CudaPreprocess.i: src/CudaPreprocess.cu.i
+.PHONY : src/CudaPreprocess.i
+
+# target to preprocess a source file
+src/CudaPreprocess.cu.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/CudaPreprocess.cu.i
+.PHONY : src/CudaPreprocess.cu.i
+
+src/CudaPreprocess.s: src/CudaPreprocess.cu.s
+.PHONY : src/CudaPreprocess.s
+
+# target to generate assembly for a file
+src/CudaPreprocess.cu.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trt_example.dir/build.make CMakeFiles/trt_example.dir/src/CudaPreprocess.cu.s
+.PHONY : src/CudaPreprocess.cu.s
+
 src/Postprocess.o: src/Postprocess.cpp.o
 .PHONY : src/Postprocess.o
 
@@ -264,6 +288,9 @@ help:
 	@echo "... src/BufferManager.o"
 	@echo "... src/BufferManager.i"
 	@echo "... src/BufferManager.s"
+	@echo "... src/CudaPreprocess.o"
+	@echo "... src/CudaPreprocess.i"
+	@echo "... src/CudaPreprocess.s"
 	@echo "... src/Postprocess.o"
 	@echo "... src/Postprocess.i"
 	@echo "... src/Postprocess.s"

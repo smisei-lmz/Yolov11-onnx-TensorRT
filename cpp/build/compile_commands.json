@@ -23,5 +23,10 @@
   "directory": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/build",
   "command": "/usr/bin/c++  -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda-13.4/include -std=gnu++17 -o CMakeFiles/trt_example.dir/src/TrtEngine.cpp.o -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/TrtEngine.cpp",
   "file": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/src/TrtEngine.cpp"
+},
+{
+  "directory": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/build",
+  "command": "/usr/local/cuda-13.4/bin/nvcc -forward-unknown-to-host-compiler  -I/home/smisei/Yolov11-ONNX-TensorRT/cpp/include -I/home/smisei/opt/tensorrt/TensorRT-11.3.0.99/include -isystem=/usr/include/opencv4 -isystem=/usr/local/cuda-13.4/include -arch=native -std=c++17 -x cu -c /home/smisei/Yolov11-ONNX-TensorRT/cpp/src/CudaPreprocess.cu -o CMakeFiles/trt_example.dir/src/CudaPreprocess.cu.o",
+  "file": "/home/smisei/Yolov11-ONNX-TensorRT/cpp/src/CudaPreprocess.cu"
 }
 ]
