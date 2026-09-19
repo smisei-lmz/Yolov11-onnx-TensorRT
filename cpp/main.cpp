@@ -25,7 +25,6 @@ int main(){
         return -1;
     }
     //preprocess
-    std::vector<float> input(engine.inputSize());
     const std::size_t row_bytes = static_cast<std::size_t>(img_w) * 3;
     const std::size_t raw_bytes = row_bytes * img_h;
     // 给原图分配GPU内存
@@ -48,12 +47,6 @@ int main(){
                 << cudaGetErrorString(error) << '\n';
         return -1;
     }
-    error = cudaMemcpy(input.data(),engine.buffers_info().input_device(),input.size() * sizeof(float),cudaMemcpyDeviceToHost);
-    if (error != cudaSuccess) {
-        std::cerr << "Preprocess result D2H failed: "
-                << cudaGetErrorString(error) << '\n';
-        return -1;
-    }
     LetterBoxInfo info = cudaPreprocessor.Get_CudaLetterBoxinfo();
     //Preprocessor::preprocess(image,input.data(),info);
     auto preprocess_end = std::chrono::steady_clock::now();
@@ -64,7 +57,7 @@ int main(){
     constexpr int warmup_iterations = 10;
     constexpr int benchmark_iterations = 100;
     for (int i = 0; i < warmup_iterations; ++i) {
-        if (!engine.infer(input.data(), output.data())) {
+        if (!engine.infer_gpubuffer( output.data())) {
             return -1;
         }
     }
@@ -72,7 +65,7 @@ int main(){
     InferenceTiming average;
     for (int i = 0; i < benchmark_iterations; ++i) {
         InferenceTiming current;
-        if (!engine.infer(input.data(), output.data(), &current)) {
+        if (!engine.infer_gpubuffer(output.data(), &current)) {
             return -1;
         }
         average.h2d_ms += current.h2d_ms;

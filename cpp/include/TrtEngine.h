@@ -23,6 +23,7 @@ public:
     ~TrtEngine();
     bool loadEngine(const std::string& path);
     bool infer(float* input, float* output, InferenceTiming* timing = nullptr);
+    bool infer_gpubuffer(float* output, InferenceTiming* timing = nullptr); //直接用gpu内存输入作为模型输入
     int inputSize(){
         return input_size_;
     }

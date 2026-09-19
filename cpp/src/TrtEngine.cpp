@@ -131,6 +131,49 @@ bool TrtEngine::infer(float* input, float* output, InferenceTiming* timing){
 }
 
 
+bool TrtEngine::infer_gpubuffer(float* output, InferenceTiming* timing){
+    if (output == nullptr || !context_) {
+        return false;
+    }
+    if (timing){
+        timing->h2d_ms = 0.0f;
+        cudaEventRecord(start_event_,stream_);
+    }
+    // buffers_.input_device() 已经被 CUDA preprocess 填好了
+        //execute
+    bool success = context_->enqueueV3(stream_);
+    if (!success){
+        std::cout << "TensorRT inference failed" <<std::endl;
+        return false;
+    }
+    if (timing){
+        cudaEventRecord(execute_event_, stream_);
+    }
+    //D2H
+    cudaMemcpyAsync(output,buffers_.output_device(),output_size_*sizeof(float),cudaMemcpyDeviceToHost,stream_);
+    if (timing){
+        cudaEventRecord(d2h_event_, stream_);
+    }
+
+    const auto sync_start = std::chrono::steady_clock::now();
+    const cudaError_t sync_status = cudaStreamSynchronize(stream_);
+    const auto sync_end = std::chrono::steady_clock::now();
+    if (sync_status != cudaSuccess){
+        std::cout << "CUDA stream synchronization failed: "
+                  << cudaGetErrorString(sync_status) << std::endl;
+        return false;
+    }
+    if (timing){
+        cudaEventElapsedTime(&timing->execute_ms, start_event_, execute_event_);
+        cudaEventElapsedTime(&timing->d2h_ms,execute_event_,d2h_event_);
+        cudaEventElapsedTime(&timing->gpu_total_ms, start_event_, d2h_event_);
+        timing->sync_wait_ms = std::chrono::duration<double, std::milli>(
+            sync_end - sync_start).count();
+    }
+    return true;
+
+}
+
 
 
 

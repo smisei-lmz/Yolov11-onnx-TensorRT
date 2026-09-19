@@ -201,11 +201,6 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-CUDAToolkit_BIN_DIR:PATH=/usr/local/cuda-13.4/bin
-
-//Path to a program.
-CUDAToolkit_NVCC_EXECUTABLE:FILEPATH=/usr/local/cuda-13.4/bin/nvcc
-
 //Path to a library.
 CUDAToolkit_rt_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.a
 
@@ -529,8 +524,6 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDAToolkit_NVCC_EXECUTABLE
-CUDAToolkit_NVCC_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDAToolkit_rt_LIBRARY
 CUDAToolkit_rt_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_CUDART
