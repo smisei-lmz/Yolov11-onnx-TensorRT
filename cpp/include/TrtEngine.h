@@ -29,9 +29,21 @@ public:
     int outputSize(){
         return output_size_;
     }
+    int inputHeight(){
+        return input_height_;
+    }
+    int inputWidth(){
+        return input_width_;
+    }
+    BufferManager& buffers_info() noexcept{
+        return buffers_;
+    }
+    
 private:
     int input_size_{0};
     int output_size_{0};
+    int input_width_{0};
+    int input_height_{0};
     Logger logger_;
     std::unique_ptr<nvinfer1::IRuntime> runtime_;
     std::unique_ptr<nvinfer1::ICudaEngine> engine_;

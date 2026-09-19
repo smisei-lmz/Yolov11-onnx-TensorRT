@@ -59,6 +59,10 @@ bool TrtEngine::loadEngine(const std::string& path){
         for (int j=0;j<shape.nbDims;j++){
             size *= shape.d[j];
         }
+        if (shape.nbDims == 4) {
+            input_height_ = shape.d[2];  // H
+            input_width_  = shape.d[3];  // W
+        }
         if (mode == TensorIOMode::kINPUT){
             input_size_ = size;
         }else{

@@ -13,3 +13,12 @@ struct Detection
     float x2;
     float y2;
 };
+
+
+struct LetterBoxInfo {
+    float scale{0.0f};
+    int resized_w{0};
+    int resized_h{0};
+    int pad_x{0};
+    int pad_y{0};
+};

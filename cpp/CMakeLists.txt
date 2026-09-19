@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.22)
-project(tensorrt_cpp_example LANGUAGES CXX)
+set(CMAKE_CUDA_COMPILER "/usr/local/cuda-13.4/bin/nvcc")
+project(tensorrt_cpp_example LANGUAGES CXX CUDA)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(TENSORRT_ROOT "/home/smisei/opt/tensorrt/TensorRT-11.3.0.99")
@@ -22,6 +25,7 @@ add_executable(trt_example
     src/Preprocess.cpp
     src/Postprocess.cpp
     src/TrtEngine.cpp
+    src/CudaPreprocess.cu
 )
 target_include_directories(trt_example PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
@@ -34,3 +38,7 @@ target_link_libraries(trt_example PRIVATE
     ${OpenCV_LIBS}
 )
 set_target_properties(trt_example PROPERTIES BUILD_RPATH "${TENSORRT_ROOT}/lib")
+set_target_properties(trt_example PROPERTIES CUDA_ARCHITECTURES OFF)
+target_compile_options(trt_example PRIVATE
+    $<$<COMPILE_LANGUAGE:CUDA>:-arch=native>
+)

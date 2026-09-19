@@ -1,2 +1,2 @@
 #smisei-lmz Yolov11-onnx-TensorRT
-A project for learning onnx-TensorRT pipeline
+A project for learning onnx-TensorRT pipeline and Cuda kernel

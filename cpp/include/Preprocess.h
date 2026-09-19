@@ -1,14 +1,8 @@
 #pragma once 
 
+#include "Types.h"
 #include <opencv2/opencv.hpp>
 
-struct LetterBoxInfo
-{
-    /* data */
-    float scale;
-    int pad_x;
-    int pad_y;
-};
 
 class Preprocessor{
 public:

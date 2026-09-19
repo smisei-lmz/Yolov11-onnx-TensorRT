@@ -1,6 +1,10 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "files.associations": {
+        "*.cu": "cuda-cpp",
+        "*.cuh": "cuda-cpp"
+    },
     "cmake.sourceDirectory": "${workspaceFolder}/cpp",
     "cmake.buildDirectory": "${workspaceFolder}/cpp/build",
     "cmake.configureSettings": {
@@ -16,6 +20,6 @@
         "/usr/local/cuda-13.4/include",
         "/usr/include/opencv4"
     ],
-    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.compilerPath": "/usr/local/cuda-13.4/bin/nvcc",
     "C_Cpp.default.cppStandard": "c++17"
 }
