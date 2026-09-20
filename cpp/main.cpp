@@ -9,7 +9,7 @@
 #include "Labels.h"
 
 int main(){
-    std::string engine_path ="/home/smisei/Yolov11-ONNX-TensorRT/models/yolo11s_static_Nodynamic_Nosimplify_Nonms_fp32.engine";
+    std::string engine_path ="/home/smisei/Yolov11-ONNX-TensorRT/models/yolo11s_static_Nodynamic_Nosimplify_Nonms_mixed_fp16.engine";
     std::string image_path ="/home/smisei/Yolov11-ONNX-TensorRT/data/test0.jpg";
     CudaPreprocessor cudaPreprocessor;
     cv::Mat image = cv::imread(image_path);
