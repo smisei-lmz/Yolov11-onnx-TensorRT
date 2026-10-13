@@ -1,4 +1,5 @@
 #include "TrtEngine.h"
+#include "nvtx_range.h"
 
 #include <chrono>
 #include <fstream>
@@ -87,16 +88,24 @@ bool TrtEngine::loadEngine(const std::string& path){
 
 
 bool TrtEngine::infer(float* input, float* output, InferenceTiming* timing){
+    NvtxRange infer_range("infer");
     if (timing){
         cudaEventRecord(start_event_, stream_);
     }
     //H2D
-    cudaMemcpyAsync(buffers_.input_device(),input,input_size_*sizeof(float),cudaMemcpyHostToDevice,stream_);
+    {
+        NvtxRange range("input_h2d_enqueue");
+        cudaMemcpyAsync(buffers_.input_device(),input,input_size_*sizeof(float),cudaMemcpyHostToDevice,stream_);
+    }
     if (timing){
         cudaEventRecord(h2d_event_, stream_);
     }
     //execute
-    bool success = context_->enqueueV3(stream_);
+    bool success;
+    {
+        NvtxRange range("tensorrt_enqueue");
+        success = context_->enqueueV3(stream_);
+    }
     if (!success){
         std::cout << "TensorRT inference failed" <<std::endl;
         return false;
@@ -105,13 +114,20 @@ bool TrtEngine::infer(float* input, float* output, InferenceTiming* timing){
         cudaEventRecord(execute_event_, stream_);
     }
     //D2H
-    cudaMemcpyAsync(output,buffers_.output_device(),output_size_*sizeof(float),cudaMemcpyDeviceToHost,stream_);
+    {
+        NvtxRange range("output_d2h_enqueue");
+        cudaMemcpyAsync(output,buffers_.output_device(),output_size_*sizeof(float),cudaMemcpyDeviceToHost,stream_);
+    }
     if (timing){
         cudaEventRecord(d2h_event_, stream_);
     }
 
     const auto sync_start = std::chrono::steady_clock::now();
-    const cudaError_t sync_status = cudaStreamSynchronize(stream_);
+    cudaError_t sync_status;
+    {
+        NvtxRange range("stream_sync");
+        sync_status = cudaStreamSynchronize(stream_);
+    }
     const auto sync_end = std::chrono::steady_clock::now();
     if (sync_status != cudaSuccess){
         std::cout << "CUDA stream synchronization failed: "
@@ -132,6 +148,7 @@ bool TrtEngine::infer(float* input, float* output, InferenceTiming* timing){
 
 
 bool TrtEngine::infer_gpubuffer(float* output, InferenceTiming* timing){
+    NvtxRange infer_range("infer_gpubuffer");
     if (output == nullptr || !context_) {
         return false;
     }
@@ -141,7 +158,11 @@ bool TrtEngine::infer_gpubuffer(float* output, InferenceTiming* timing){
     }
     // buffers_.input_device() 已经被 CUDA preprocess 填好了
         //execute
-    bool success = context_->enqueueV3(stream_);
+    bool success;
+    {
+        NvtxRange range("tensorrt_enqueue");
+        success = context_->enqueueV3(stream_);
+    }
     if (!success){
         std::cout << "TensorRT inference failed" <<std::endl;
         return false;
@@ -150,13 +171,20 @@ bool TrtEngine::infer_gpubuffer(float* output, InferenceTiming* timing){
         cudaEventRecord(execute_event_, stream_);
     }
     //D2H
-    cudaMemcpyAsync(output,buffers_.output_device(),output_size_*sizeof(float),cudaMemcpyDeviceToHost,stream_);
+    {
+        NvtxRange range("output_d2h_enqueue");
+        cudaMemcpyAsync(output,buffers_.output_device(),output_size_*sizeof(float),cudaMemcpyDeviceToHost,stream_);
+    }
     if (timing){
         cudaEventRecord(d2h_event_, stream_);
     }
 
     const auto sync_start = std::chrono::steady_clock::now();
-    const cudaError_t sync_status = cudaStreamSynchronize(stream_);
+    cudaError_t sync_status;
+    {
+        NvtxRange range("stream_sync");
+        sync_status = cudaStreamSynchronize(stream_);
+    }
     const auto sync_end = std::chrono::steady_clock::now();
     if (sync_status != cudaSuccess){
         std::cout << "CUDA stream synchronization failed: "

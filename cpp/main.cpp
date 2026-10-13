@@ -7,6 +7,7 @@
 #include "CudaPreprocess.h"
 #include "Postprocess.h"
 #include "Labels.h"
+#include "nvtx_range.h"
 
 int main(){
     std::string engine_path ="/home/smisei/Yolov11-ONNX-TensorRT/models/yolo11s_static_Nodynamic_Nosimplify_Nonms_int8.engine";
@@ -33,15 +34,22 @@ int main(){
         return -1;
     }
     // CPU OpenCV图像复制到GPU
-    cudaError_t error = cudaMemcpy2D(engine.buffers_info().raw_device(),row_bytes,image.data,image.step,row_bytes,img_h,cudaMemcpyHostToDevice);
+    cudaError_t error;
+    {
+        NvtxRange range("image_h2d");
+        error = cudaMemcpy2D(engine.buffers_info().raw_device(),row_bytes,image.data,image.step,row_bytes,img_h,cudaMemcpyHostToDevice);
+    }
     if (error != cudaSuccess) {
         std::cerr << "Image H2D failed: "
                 << cudaGetErrorString(error) << '\n';
         return -1;
     }
     auto preprocess_start = std::chrono::steady_clock::now();
-    error = cudaPreprocessor.Cuda_Preprocess((unsigned char * )engine.buffers_info().raw_device(),img_w,img_h,img_w * 3,
-                                                (float * )engine.buffers_info().input_device(),engine.inputWidth(),engine.inputHeight());
+    {
+        NvtxRange range("cuda_preprocess");
+        error = cudaPreprocessor.Cuda_Preprocess((unsigned char * )engine.buffers_info().raw_device(),img_w,img_h,img_w * 3,
+                                                    (float * )engine.buffers_info().input_device(),engine.inputWidth(),engine.inputHeight());
+    }
     if (error != cudaSuccess) {
         std::cerr << "CUDA preprocess failed: "
                 << cudaGetErrorString(error) << '\n';
@@ -56,23 +64,29 @@ int main(){
     std::vector<float> output(engine.outputSize());
     constexpr int warmup_iterations = 10;
     constexpr int benchmark_iterations = 100;
-    for (int i = 0; i < warmup_iterations; ++i) {
-        if (!engine.infer_gpubuffer( output.data())) {
-            return -1;
+    {
+        NvtxRange range("warmup");
+        for (int i = 0; i < warmup_iterations; ++i) {
+            if (!engine.infer_gpubuffer(output.data())) {
+                return -1;
+            }
         }
     }
 
     InferenceTiming average;
-    for (int i = 0; i < benchmark_iterations; ++i) {
-        InferenceTiming current;
-        if (!engine.infer_gpubuffer(output.data(), &current)) {
-            return -1;
+    {
+        NvtxRange range("benchmark");
+        for (int i = 0; i < benchmark_iterations; ++i) {
+            InferenceTiming current;
+            if (!engine.infer_gpubuffer(output.data(), &current)) {
+                return -1;
+            }
+            average.h2d_ms += current.h2d_ms;
+            average.execute_ms += current.execute_ms;
+            average.d2h_ms += current.d2h_ms;
+            average.gpu_total_ms += current.gpu_total_ms;
+            average.sync_wait_ms += current.sync_wait_ms;
         }
-        average.h2d_ms += current.h2d_ms;
-        average.execute_ms += current.execute_ms;
-        average.d2h_ms += current.d2h_ms;
-        average.gpu_total_ms += current.gpu_total_ms;
-        average.sync_wait_ms += current.sync_wait_ms;
     }
     average.h2d_ms /= benchmark_iterations;
     average.execute_ms /= benchmark_iterations;
@@ -90,7 +104,11 @@ int main(){
               << "  Pipeline FPS: " << 1000.0f / average.gpu_total_ms << "\n"<<std::endl;
     std::cout<<"Inference done"<<std::endl;
     auto Postprecess_start = std::chrono::steady_clock::now();
-    auto detections = Postprocessor::decode(output.data(),80,8400,0.25f,0.45f,info,img_w,img_h);
+    std::vector<Detection> detections;
+    {
+        NvtxRange range("postprocess_decode");
+        detections = Postprocessor::decode(output.data(),80,8400,0.25f,0.45f,info,img_w,img_h);
+    }
     auto Postprecess_end = std::chrono::steady_clock::now();
     double total_postprocess =std::chrono::duration<double, std::milli>(Postprecess_end - Postprecess_start).count();
     std::cout<<"Postprocess time:"<< total_postprocess << "ms\n"<<std::endl;
